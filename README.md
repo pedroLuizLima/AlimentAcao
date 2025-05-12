@@ -81,3 +81,34 @@ O Diagrama Entidade-Relacionamento (DER) é uma representação gráfica amplame
 
 ### DLD
 O Diagrama Lógico de Dados (DLD) é uma representação gráfica que ilustra a estrutura lógica de um banco de dados. Nesse diagrama, são exibidas informações cruciais, como os tipos de atributos associados a cada entidade, bem como as chaves estrangeiras e restrições, como a chave única (unique key). Seu propósito fundamental é fornecer uma representação estruturada e específica da maneira como o banco de dados deve ser implementado. Em resumo, o DLD funciona como uma representação visual que orienta a implementação efetiva do banco de dados.
+![MER do Projeto](./imgs/AlimentAcao.png)
+
+### Dicionário de dados
+
+#### Doador
+|Atributo|Propriedades do Atributo|Tipo de Dado|Tamanho|Descrição|
+|--------|------------------------|------------|-------|---------|
+|CPF|Chave Primária, Obrigatório| Varchar|14|CPF do doador|
+|Nome|Obrigatório|Varchar|200|Nome do doador|
+|Telefone|Obrigatório|Varchar|14|Telefone do doador|
+|Email|Chave exclusiva, Obrigatório|Varchar|100|Email do doador|
+
+#### EnderecoDoador
+|Atributo|Propriedades do Atributo|Tipo de Dado|Tamanho|Descrição|
+|--------|------------------------|------------|-------|---------|
+|CEP|Obrigatório|Varchar|9|CEP da rua do endereco do Doador|
+|UF|Obrigatório|Varchar|2|Unidade Federativa do endereco do Doador|
+|Cidade|Obrigatório|Varchar|45|Cidade do endereco do Doador|
+|Bairro|Obrigatório|Varchar|45|Bairro do endereco do Doador|
+|Rua|Obrigatório|Varchar|100|Rua do endereco do Doador|
+|Numero|Obrigatório|INT||Número da residência do Doador|
+|Complemento||Varchar|45|Complemento do endereco do Cliente|
+|Doador_CPF|Chave Primária, Chave estrangeira, Obrigatório|Varchar|45|CPF do Doador dono do endereco|
+
+#### RedesSociaisDoador
+|Atributo|Propriedades do Atributo|Tipo de Dado|Tamanho|Descrição|
+|--------|------------------------|------------|-------|---------|
+|RedeSocial|Obrigatório|Varchar|45|Rede Social|
+|Username|Chave exclusiva, Obrigatório|Varchar|45|Perfil do Doador na Rede Social|
+|Email|Obrigatório|Varchar|100|Email do Perfil da Rede Social|
+|Doador_CPF|Chave estrangeira, Obrigatório|Varchar|14|CPF do Doador|
