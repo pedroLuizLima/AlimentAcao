@@ -73,11 +73,11 @@ O Modelo Entidade-Relacionamento (MER) é uma abordagem conceitual usada no proj
   - Cardinalidade: (1:n)
 - ONG/Instituicao/Igreja possui alimentosAceitos
   - ONG/Instituicao/Igreja possui um ou vários alimentosAceitos, e alimentosAceitos são aceitos por apenas uma ONG/Instituicao/Igreja
+  - Cardinalidade: (1:n)
 
-## Arquitetura
+### DER
 
-Aqui você disserta sobre a arquitetura que você usou no projeto, que vai desde um desenho que represente a arquitetura usada, como o exemplo abaixo, até mesmo os padrões de projeto que você usou.
-
+O Diagrama Entidade-Relacionamento (DER) é uma representação gráfica amplamente utilizada no projeto de bancos de dados. Ele descreve as entidades (objetos), seus atributos (características) e os relacionamentos entre as entidades. Os retângulos representam as entidades, as elipses indicam os atributos e as linhas conectam as entidades para mostrar como elas se relacionam. O DER é uma ferramenta fundamental para visualizar e planejar a estrutura de um banco de dados antes da implementação, ajudando a definir como os dados são armazenados e acessados
 ![Curto.io Example Architecture](./imgs/MER AlimentAção (2).png)
 
 Exemplo de texto (explicando a arquitetura do curto.io):
