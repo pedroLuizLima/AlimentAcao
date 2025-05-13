@@ -102,8 +102,8 @@ O Diagrama Lógico de Dados (DLD) é uma representação gráfica que ilustra a 
 |Bairro|Obrigatório|Varchar|45|Bairro do endereco do Doador|
 |Rua|Obrigatório|Varchar|100|Rua do endereco do Doador|
 |Numero|Obrigatório|INT||Número da residência do Doador|
-|Complemento||Varchar|45|Complemento do endereco do Cliente|
-|Doador_CPF|Chave Primária, Chave estrangeira, Obrigatório|Varchar|45|CPF do Doador dono do endereco|
+|Complemento||Varchar|45|Complemento do endereco do Doador|
+|Doador_CPF|Chave Primária, Chave estrangeira, Obrigatório|Varchar|14|CPF do Doador dono do endereco|
 
 #### RedesSociaisDoador
 |Atributo|Propriedades do Atributo|Tipo de Dado|Tamanho|Descrição|
@@ -112,3 +112,84 @@ O Diagrama Lógico de Dados (DLD) é uma representação gráfica que ilustra a 
 |Username|Chave exclusiva, Obrigatório|Varchar|45|Perfil do Doador na Rede Social|
 |Email|Obrigatório|Varchar|100|Email do Perfil da Rede Social|
 |Doador_CPF|Chave estrangeira, Obrigatório|Varchar|14|CPF do Doador|
+
+#### DoacaoAnonima
+|Atributo|Propriedades do Atributo|Tipo de Dado|Tamanho|Descrição|
+|--------|------------------------|------------|-------|---------|
+|IdDoacaoAnonima|Chave Primária, Obrigatório|INT||Id das doações anônimas|
+|DataDoacao|Obrigatório|Date||Data que foi feita a doação|
+|PesoTotal(kg)|Obrigatório|INT|5|Peso total da doação anônima em quilos|
+|CondiçãoDeRetirada|Obrigatório|Varchar|45|Registro de especificação do transporte do alimento (congelado, resfriado, enpacotado ou próximo ao vencimento)|
+|Doador_CPF|Chave estrangeira, Obrigatório|Varchar|14|CPF do doador que fez a doação|
+
+#### DoacaoEspecifica
+|Atributo|Propriedades do Atributo|Tipo de Dado|Tamanho|Descrição|
+|--------|------------------------|------------|-------|---------|
+|IdDoacaoEspecifica|Chave Primária, Obrigatório|INT||Id das doações anônimas|
+|DataDoacao|Obrigatório|Date||Data que foi feita a doação|
+|PesoTotal(kg)|Obrigatório|INT|5|Peso total da doação anônima em quilos|
+|CondiçãoDeRetirada|Obrigatório|Varchar|45|Registro de especificação do transporte do alimento (congelado, resfriado, enpacotado ou próximo ao vencimento)|
+|MetodoDeEnrega|Obrigatório|Varchar|45|Registro se a entrega será feita pelo doador ou se ele necessita de apoio logístico|
+|Doador_CPF|Chave estrangeira, Obrigatório|Varchar|14|CPF do doador que fez a doação|
+|ONG/Instituicao/Igreja_CNPJ|Chave estrangeira, Obrigatório|Varchar|18|CNPJ da instituição que receberá a doação|
+
+#### DoacaoAlimento
+|Atributo|Propriedades do Atributo|Tipo de Dado|Tamanho|Descrição|
+|--------|------------------------|------------|-------|---------|
+|KilosAlimento(kg)|Obrigatório|INT|5|Quantidade de alimento doado em quilos|
+|Quantidade(und)|Obrigatório|INT|5|Unidades de alimento doado|
+|Alimentos_idAlimento|Chave estrangeira, Obrigatório|INT||Id do alimento doado|
+|DoacaoEspecifica_idDoacaoEspecifica|Chave estrangeira|INT||Id da doação que o alimento participou|
+|DoacaoAnonima_idDoacaoAnonima|Chave estrangeira|INT||Id da doação que o alimento participou|
+
+#### Alimentos
+|Atributo|Propriedades do Atributo|Tipo de Dado|Tamanho|Descrição|
+|--------|------------------------|------------|-------|---------|
+|IdAlimento|Chave primária, Obrigatório|INT||Id dos alimentos registrados|
+|Nome|Obrigatório|Varchar|45|Nome do alimento|
+|Categoria|Obrigatório|Varchar|45|Categoria que o alimento pertence|
+
+#### ONG/Instituicao/Igreja
+|Atributo|Propriedades do Atributo|Tipo de Dado|Tamanho|Descrição|
+|--------|------------------------|------------|-------|---------|
+|CNPJ|Chave primária, Obrigatório|Varchar|18|CNPJ da instituição que vai receber a doação|
+|NomeInstituicao|Obrigatório|Varchar|100|Nome da instituição recebedora|
+|NomeResponsável|Obrigatório|Varchar|100|Nome do responsável pela instituição recebedora|
+|TipoInstituição|Obrigatório|Varchar|45|Registro de que tipo de instituição a instituição recebedora pertence|
+|Telefone|Obrigatório|Varchar|14|Telefone da instituição recebedora|
+|Email|Obrigatório|Varchar|100|Email da instituição recebedora|
+|NumBeneficiarios|Obrigatório|INT|5|Número de beneficiários que a instituição atende|
+|HoraDeAbertura|Obrigatório|Time||Horário de início do funcionamento da instituição recebedora|
+|HoraDeFechamento|Obrigatório|Time||Horário de fim do funcionamento da instituição recebedora|
+
+#### EnderecoRecebedor
+|Atributo|Propriedades do Atributo|Tipo de Dado|Tamanho|Descrição|
+|--------|------------------------|------------|-------|---------|
+|CEP|Obrigatório|Varchar|9|CEP da rua do endereco da instituição recebedora|
+|UF|Obrigatório|Varchar|2|Unidade Federativa do endereço da instituição recebedora|
+|Cidade|Obrigatório|Varchar|45|Cidade do endereco da instituição recebedora|
+|Bairro|Obrigatório|Varchar|45|Bairro do endereco da instituição recebedora|
+|Rua|Obrigatório|Varchar|100|Rua do endereco da instituição recebedora|
+|Numero|Obrigatório|INT||Número da residência da instituição recebedora|
+|Complemento||Varchar|45|Complemento do endereco da instituição recebedora|
+|ONG/Instituição/Igreja_CNPJ|Chave Primária, Chave estrangeira, Obrigatório|Varchar|18|CNPJ da instituição recebedora dona do endereco|
+
+#### RedesSociaisRecebedor
+|Atributo|Propriedades do Atributo|Tipo de Dado|Tamanho|Descrição|
+|--------|------------------------|------------|-------|---------|
+|RedeSocial|Obrigatório|Varchar|45|Rede Social|
+|Username|Chave exclusiva, Obrigatório|Varchar|45|Perfil da instituição recebedora na Rede Social|
+|Email|Obrigatório|Varchar|100|Email do Perfil da Rede Social|
+|ONG/Instituição/Igreja_CNPJ|Chave estrangeira, Obrigatório|Varchar|14|CNPJ da instituição recebedora|
+
+#### AreaAtuação
+|Atributo|Propriedades do Atributo|Tipo de Dado|Tamanho|Descrição|
+|--------|------------------------|------------|-------|---------|
+|Bairro|Obrigatório|Varchar|45|Bairro que a instituição atua|
+|ONG/Instituição/Igreja_CNPJ|Chave estrangeira, Obrigatório|Varchar|18|CNPJ da instituição recebedora|
+
+#### AlimentosAceitos
+|Atributo|Propriedades do Atributo|Tipo de Dado|Tamanho|Descrição|
+|--------|------------------------|------------|-------|---------|
+|TipoDeAlimento|Obrigatório|Varchar|45|Registro de tipos de alimento (congelado, resfriado, enpacotado ou próximo ao vencimento) que a instituição recebe|
+|ONG/Instituição/Igreja_CNPJ|Chave estrangeira, Obrigatório|Varchar|18|CNPJ da instituição recebedora|
